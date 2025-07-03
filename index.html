@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio de Saad</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- زر الوضع الليلي -->
+  <button id="darkModeToggle">🌙</button>
+
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <h1>Saad</h1>
+      <nav>
+        <ul>
+          <li><a href="#accueil">Accueil</a></li>
+          <li><a href="#apropos">À propos</a></li>
+          <li><a href="#projets">Projets</a></li>
+          <li><a href="#competences">Compétences</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section id="accueil" class="hero">
+    <h2>Bienvenue sur mon site</h2>
+    <p>Je suis Saad, développeur web passionné.</p>
+    <a href="#contact" class="btn">Contactez-moi</a>
+
+    <!-- زر تشغيل الأغنية -->
+    <button id="playMusic" class="music-btn">🎵 Play Music</button>
+    <audio id="bgMusic" src="saadsami.mp3" preload="auto"></audio>
+  </section>
+
+  <!-- À propos Section -->
+  <section id="apropos" class="about-section container">
+    <h2>À propos</h2>
+    <p>Développeur web passionné, créatif et rigoureux, je conçois des sites modernes, performants et adaptés à vos besoins. J'aime apprendre de nouvelles technologies et relever des défis !</p>
+  </section>
+
+  <!-- Projets Section -->
+  <section id="projets" class="projects-section container">
+    <h2>Projets</h2>
+    <div class="projects-grid">
+      <div class="project-card">
+        <h3>Portfolio Personnel</h3>
+        <p>Un site vitrine responsive pour présenter mes compétences et réalisations.</p>
+      </div>
+      <div class="project-card">
+        <h3>Gestionnaire de tâches</h3>
+        <p>Application web pour organiser ses tâches quotidiennes (HTML, CSS, JS).</p>
+      </div>
+      <div class="project-card">
+        <h3>Application Météo</h3>
+        <p>Dashboard météo en temps réel utilisant une API publique et affichage dynamique.</p>
+      </div>
+      <div class="project-card">
+        <h3>Landing Page Animée</h3>
+        <p>Page d'accueil moderne avec animations CSS et transitions fluides.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Compétences Section -->
+  <section id="competences" class="skills-section container">
+    <h2>Compétences</h2>
+    <ul class="skills-list">
+      <li>HTML5 / CSS3</li>
+      <li>JavaScript (ES6+)</li>
+      <li>Responsive Design</li>
+      <li>Git & GitHub</li>
+      <li>UI/UX</li>
+    </ul>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="contact-section container">
+    <h2>Contact</h2>
+    <form id="contactForm" class="contact-form" action="https://formspree.io/f/your_form_id" method="POST" autocomplete="off">
+      <input type="text" id="name" name="name" placeholder="Votre nom" required />
+      <input type="email" id="email" name="email" placeholder="Votre email" required />
+      <textarea id="message" name="message" rows="5" placeholder="Votre message" required></textarea>
+      <button type="submit" class="btn">Envoyer</button>
+    </form>
+    <div class="contact-info">
+      <p>📧 Email : <a href="mailto:saad.sami2908@gmail.com">saad.sami2908@gmail.com</a></p>
+      <p>💼 LinkedIn : <a href="https://linkedin.com/in/saadsami" target="_blank" rel="noopener">linkedin.com/in/saadsami</a></p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 Saad. Tous droits réservés.</p>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    // الوضع الليلي
+    document.getElementById('darkModeToggle').addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+    });
+
+    // الموسيقى
+    const music = document.getElementById('bgMusic');
+    const btn = document.getElementById('playMusic');
+    music.volume = 0.5;
+    btn.addEventListener('click', () => {
+      if (music.paused) {
+        music.play();
+        btn.textContent = "⏸️ Pause Music";
+      } else {
+        music.pause();
+        btn.textContent = "🎵 Play Music";
+      }
+    });
+    music.addEventListener('ended', () => {
+      btn.textContent = "🎵 Play Music";
+    });
+
+    // إظهار الأقسام عند التمرير (scroll reveal)
+    function revealSections() {
+      const sections = document.querySelectorAll('.about-section, .projects-section, .skills-section, .contact-section');
+      const trigger = window.innerHeight * 0.85;
+      sections.forEach(section => {
+        const rect = section.getBoundingClientRect();
+        if (rect.top < trigger) {
+          section.classList.add('visible');
+        }
+      });
+    }
+    window.addEventListener('scroll', revealSections);
+    window.addEventListener('DOMContentLoaded', revealSections);
+  </script>
+</body>
+</html>
